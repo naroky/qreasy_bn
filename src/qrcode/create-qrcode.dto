@@ -1,0 +1,4 @@
+export class CreateQrCodeDto {
+  readonly url: string;
+  readonly token: string;
+}
