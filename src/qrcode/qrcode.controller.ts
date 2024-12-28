@@ -10,9 +10,6 @@ export class QrCodeController {
     async generateQrCode(@Body() data: any) {
       const { url, googletoken } = data;
       const isHuman = await this.recaptchaService.validateToken(googletoken);
-
-      console.log(url);
-      console.log(googletoken);
       let qrcode;
       if (isHuman) {
         qrcode = await this.qrCodeService.generateQrCode(url);
@@ -28,11 +25,8 @@ export class QrCodeController {
     @Post('qronly')
     async qronly(@Body() data: any) {
       const {url} = data;
-      console.log(url);
       let qrcode = await this.qrCodeService.generateQrCode(url)
-      let res = {"image": qrcode,
-        "ishuman" : true
-      };
+      let res = {"image": qrcode};
       return (res);
     }
 

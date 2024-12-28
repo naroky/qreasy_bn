@@ -3,7 +3,7 @@ import axios from 'axios';
 
 @Injectable()
 export class RecaptchaService {
-  private readonly RECAPTCHA_URL = 'https://www.google.com/recaptcha/api/siteverify';
+  private readonly RECAPTCHA_URL = process.env.RECAPTCHA_URL;
   private readonly secretKey = process.env.RECAPTCHA_SECRET;
 
   async validateToken(token: string): Promise<boolean> {
