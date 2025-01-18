@@ -1,0 +1,9 @@
+steps:
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['build', '-t', 'gcr.io/vostedelista/qreasy-bn', '.']
+    
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['push', 'gcr.io/vostedelista/qreasy-bn']
+
+  - name: 'gcr.io/cloud-builders/gcloud'
+    args: ['beta', 'run', 'deploy', 'qreasy-bn', '--image', 'gcr.io/vostedelista/qreasy-bn', '--region', 'asia-southeast1', '--port', '3000', '--allow-unauthenticated', '--platform', 'managed', '--quiet']  
